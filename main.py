@@ -1,7 +1,7 @@
 from aiogram.utils import executor
 from bot_telegram import dp
 
-from handlers.Client import register_handlers_client
+from handlers.client import register_handlers_client
 
 register_handlers_client(dp)
 
