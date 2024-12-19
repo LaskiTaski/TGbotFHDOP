@@ -36,8 +36,7 @@ def upgrade_register_user(user_information: dict):
         if user_id:
             sqlite_insert_change_with_param = f"""UPDATE register_clients SET Name=?, User_Name=?, Registration=?
             WHERE UserID=?"""
-            data_tuple = tuple(user_id)
-            print(data_tuple)
+            data_tuple = tuple(list(user_information.values())[1::]) + (user_id[0],)
 
         else:
             sqlite_insert_change_with_param = """INSERT INTO register_clients (UserID, Name, User_Name, Registration)
@@ -52,5 +51,4 @@ def upgrade_register_user(user_information: dict):
 
 
     except sqlite3.Error as error:
-        print(f'ru: Ошибка в db_client -> Функция upgrade_register_user {error}\n')
-        # logging.warning(f'Ошибка в IC_UserInformation {error}\n')
+        print(f'Ошибка в db_client -> Функция upgrade_register_user {error}\n')
